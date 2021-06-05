@@ -25,9 +25,11 @@ private:
 
 private:
     void init();
+    void createConnection();
 
 signals:
     void sigValueChanged(int);
+    void sigPlay();
 };
 
 #endif // TOOLBOX_H

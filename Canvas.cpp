@@ -16,7 +16,7 @@ Canvas::~Canvas()
 
 void Canvas::paintEvent(QPaintEvent *event)
 {
-    static unsigned int counter = 0;
+    static int counter = -1;
     counter = (counter+1)%360;
 
     const int w = this->width();
@@ -44,14 +44,14 @@ void Canvas::paintEvent(QPaintEvent *event)
     pathFocus.lineTo(10, 120);
     pathFocus.closeSubpath();
 
-    painter.save();
     for (int i = 0; i < 24; ++i)
     {
+        painter.save();
         painter.setBrush(QBrush(randColor(100, 156)));
-        painter.rotate(15);
-        painter.drawPath((counter-15)/15 == i ? pathFocus : pathNormal);
+        painter.rotate(15*i);
+        painter.drawPath((counter+7)/15 == i ? pathFocus : pathNormal);
+        painter.restore();
     }
-    painter.restore();
 
     for (int i = 0; i < 6; ++i)
     {
@@ -79,9 +79,8 @@ void Canvas::paintEvent(QPaintEvent *event)
 void Canvas::init()
 {
     srand(time(0));
-    m_timer.setInterval(33);
+    m_timer.setInterval(1);
     connect(&m_timer, &QTimer::timeout, [this]{update();});
-    m_timer.start();
 }
 
 int Canvas::randInt(int low, int high)
@@ -96,7 +95,13 @@ QColor Canvas::randColor(int low, int high)
 
 void Canvas::slotTimerIntervalChanged(int value)
 {
-    m_timer.stop();
     m_timer.setInterval(value);
-    m_timer.start();
+}
+
+void Canvas::slotPlay()
+{
+    static bool status = false;
+    status = !status;
+    if (status){ m_timer.start(); }
+    else { m_timer.stop(); }
 }

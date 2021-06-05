@@ -35,6 +35,7 @@ private:
 
 private slots:
     void slotTimerIntervalChanged(int value);
+    void slotPlay();
 };
 
 #endif // CANVAS_H

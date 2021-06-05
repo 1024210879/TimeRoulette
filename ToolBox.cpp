@@ -8,6 +8,7 @@ ToolBox::ToolBox(QWidget *parent) :
     ui->setupUi(this);
 
     init();
+    createConnection();
 }
 
 ToolBox::~ToolBox()
@@ -25,5 +26,19 @@ void ToolBox::init()
 {
     ui->horizontalSlider_timerInterval->setMinimum(1);
     ui->horizontalSlider_timerInterval->setMaximum(33);
-    ui->horizontalSlider_timerInterval->setValue(33);
+    ui->horizontalSlider_timerInterval->setValue(1);
+
+    ui->pushButton_play->setProperty("status", QVariant(false));
+}
+
+void ToolBox::createConnection()
+{
+    connect(ui->pushButton_play, &QPushButton::clicked, [this]{
+        bool status = ui->pushButton_play->property("status").toBool();
+        status = !status;
+        ui->pushButton_play->setProperty("status", QVariant(status));
+        if (status) { ui->pushButton_play->setText("stop"); }
+        else { ui->pushButton_play->setText("start"); }
+        emit sigPlay();
+    });
 }

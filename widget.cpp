@@ -26,5 +26,8 @@ void Widget::createConnection()
 {
     connect(m_pToolBox, SIGNAL(sigValueChanged(int)),
             m_pCanvas, SLOT(slotTimerIntervalChanged(int)));
+
+    connect(m_pToolBox, SIGNAL(sigPlay()),
+            m_pCanvas, SLOT(slotPlay()));
 }
 
