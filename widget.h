@@ -2,14 +2,9 @@
 #define WIDGET_H
 
 #include <QWidget>
-#include <QPainter>
-#include <QPaintEvent>
-#include <QTimer>
-#include <QPainterPath>
-
-#include <time.h>
 
 #include "ToolBox.h"
+#include "Canvas.h"
 
 namespace Ui {
 class Widget;
@@ -23,22 +18,14 @@ public:
     explicit Widget(QWidget *parent = 0);
     ~Widget();
 
-protected:
-    void paintEvent(QPaintEvent *event);
-
 private:
     Ui::Widget *ui;
-    QTimer m_timer;
     ToolBox* m_pToolBox;
+    Canvas* m_pCanvas;
 
 private:
-    int randInt(int low, int high);
-    QColor randColor(int low, int high);
     void init();
     void createConnection();
-
-private slots:
-    void slotTimeout();
 };
 
 #endif // WIDGET_H

@@ -9,7 +9,7 @@ namespace Ui {
 class ToolBox;
 }
 
-class ToolBox : public MovableWidget
+class ToolBox : public QWidget
 {
     Q_OBJECT
 

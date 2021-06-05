@@ -2,7 +2,7 @@
 #include "ui_ToolBox.h"
 
 ToolBox::ToolBox(QWidget *parent) :
-    MovableWidget(parent),
+    QWidget(parent),
     ui(new Ui::ToolBox)
 {
     ui->setupUi(this);
