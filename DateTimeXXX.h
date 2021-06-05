@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QDate>
 #include <QTime>
+#include <QFont>
 #include <QDebug>
 
 namespace Ui {
@@ -25,6 +26,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::DateTimeXXX *ui;
@@ -36,26 +38,34 @@ private:
         "玖", "拾"
     };
 
-    int m_month;
-    int m_day;
-    int m_hour;
-    int m_minute;
-    int m_second;
+    typedef struct {
+        int month;
+        int day;
+        int daysInMonth;
+        int hour;
+        int minute;
+        int second;
+    }DateTimeInfo;
 
     QTimer m_timer;
+    DateTimeInfo m_dateTimeInfo;
 
     QPen m_penNormal;
     QPen m_penHighlight;
+    QFont m_fontNormal;
+    QFont m_fontHighlight;
 
 private:
     void init();
     QString itoStr(int i);
+    void getDateTime();
 
     void paintMonth(QPainter* painter);
     void paintDay(QPainter* painter);
     void paintHour(QPainter* painter);
     void paintMinute(QPainter* painter);
     void paintSecond(QPainter* painter);
+    void paintLabel(QPainter* painter);
 };
 
 #endif // DATETIMEXXX_H
