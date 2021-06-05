@@ -10,10 +10,12 @@
 #include <QDate>
 #include <QTime>
 #include <QFont>
-#include <QDebug>
+#include <QScreen>
+//#include <QDebug>
 
 #include "DateTimeXXXToolBox.h"
 #include "MsgManager.h"
+#include "datIO.h"
 
 namespace Ui {
 class DateTimeXXX;
@@ -29,7 +31,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
-    void keyPressEvent(QKeyEvent *event);
+//    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::DateTimeXXX *ui;
@@ -84,6 +86,7 @@ private:
 private slots:
     void slotChangeColor(QString topic, QString channel, int value);
     void slotChangeSpacing(int value);
+    void slotExit();
 };
 
 #endif // DATETIMEXXX_H

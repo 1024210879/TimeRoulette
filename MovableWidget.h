@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QMouseEvent>
-#include <QDebug>
+//#include <QDebug>
 
 class MovableWidget : public QWidget
 {

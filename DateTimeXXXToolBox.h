@@ -3,8 +3,10 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+
 #include "MovableWidget.h"
 #include "MsgManager.h"
+#include "datIO.h"
 
 namespace Ui {
 class DateTimeXXXToolBox;
@@ -41,6 +43,10 @@ private slots:
 
     void on_horizontalSlider_spacing_valueChanged(int value);
 
+    void on_pushButton_save_clicked();
+
+    void on_pushButton_close_clicked();
+
 private:
     Ui::DateTimeXXXToolBox *ui;
 
@@ -51,6 +57,7 @@ private:
 signals:
     void sigChangeColor(QString, QString, int);
     void sigChangeSpacing(int);
+    void sigExit();
 };
 
 #endif // DATETIMEXXXTOOLBOX_H

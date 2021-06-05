@@ -22,11 +22,7 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
 
     const int w = this->width();
     const int h = this->height();
-    painter.setPen(QColor(0, 0, 0));
-    painter.setBrush(QColor(0, 0, 0));
-    painter.drawRect(QRect(0, 0, w, h));
 
-    painter.setPen(QColor(130, 130, 130, 230));
     painter.translate(w >> 1, h >> 1);
     painter.scale(std::min(w, h)/600.0, std::min(w, h)/600.0);
 
@@ -38,29 +34,46 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintLabel(&painter);
 }
 
-void DateTimeXXX::keyPressEvent(QKeyEvent *event)
-{
-    if (event->key() == Qt::Key_Escape)
-    {
-        this->close();
-    }
-    else if (event->key() == Qt::Key_T && event->modifiers() == Qt::ControlModifier)
-    {
-        m_pToolBox->move(10, 10);
-        m_pToolBox->show();
-    }
-}
+//void DateTimeXXX::keyPressEvent(QKeyEvent *event)
+//{
+//    if (event->key() == Qt::Key_Escape)
+//    {
+//        this->close();
+//    }
+//    else if (event->key() == Qt::Key_T && event->modifiers() == Qt::ControlModifier)
+//    {
+//        m_pToolBox->move(10, 10);
+//        m_pToolBox->show();
+//    }
+//}
 
 void DateTimeXXX::init()
 {
+    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     this->setWindowFlag(Qt::FramelessWindowHint);
-    this->showFullScreen();
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
+
+    QList<QScreen *> list_screen =  QGuiApplication::screens();
+    QRect rect = list_screen.at(0)->geometry();
+    const int sw = rect.width();
+    const int sh = rect.height();
+    this->setFixedSize(sw, sh);
 
     getDateTimeInfo();
 
-    m_penHighlight.setColor(QColor(220, 234, 246));
-    m_penNormal.setColor(QColor(118, 149, 150));
-    m_penLabel.setColor(QColor(150, 10, 10));
+    std::vector<uchar> v = datIO::readDat();
+    if (!v.empty())
+    {
+        m_penHighlight.setColor(QColor(v[0], v[1], v[2]));
+        m_penNormal.setColor(QColor(v[3], v[4], v[5]));
+        m_penLabel.setColor(QColor(v[6], v[7], v[8]));
+    }
+    else
+    {
+        m_penHighlight.setColor(QColor(220, 234, 246));
+        m_penNormal.setColor(QColor(118, 149, 150));
+        m_penLabel.setColor(QColor(150, 10, 10));
+    }
     m_fontNormal.setBold(false);
     m_fontNormal.setWeight(1);
     m_fontHighlight.setBold(true);
@@ -73,7 +86,8 @@ void DateTimeXXX::init()
     });
     m_timer.start();
 
-    m_pToolBox = new DateTimeXXXToolBox(this);
+    m_pToolBox = new DateTimeXXXToolBox;
+    m_pToolBox->show();
 }
 
 void DateTimeXXX::registerMsg()
@@ -87,6 +101,11 @@ void DateTimeXXX::registerMsg()
                 QString("changeSpacing"),
                 this,
                 SLOT(slotChangeSpacing(int)));
+
+    MsgManager::instance()->registerSlot(
+                QString("exit"),
+                this,
+                SLOT(slotExit()));
 }
 
 QString DateTimeXXX::itoStr(int i)
@@ -259,9 +278,18 @@ void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
         }
         m_penLabel.setColor(color);
     }
+
+    this->repaint();
 }
 
 void DateTimeXXX::slotChangeSpacing(int value)
 {
     m_spacing = value;
+
+    this->repaint();
+}
+
+void DateTimeXXX::slotExit()
+{
+    this->close();
 }
