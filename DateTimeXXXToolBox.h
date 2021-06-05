@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QKeyEvent>
 
+#include "TrayIcon.h"
 #include "MovableWidget.h"
 #include "MsgManager.h"
 #include "datIO.h"
@@ -49,6 +50,7 @@ private slots:
 
 private:
     Ui::DateTimeXXXToolBox *ui;
+    TrayIcon* trayIcon;
 
 private:
     void init();

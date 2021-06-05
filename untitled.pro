@@ -32,7 +32,8 @@ SOURCES += \
     DateTimeXXX.cpp \
     DateTimeXXXToolBox.cpp \
     MsgManager.cpp \
-    datIO.cpp
+    datIO.cpp \
+    TrayIcon.cpp
 
 HEADERS += \
         widget.h \
@@ -42,7 +43,8 @@ HEADERS += \
     DateTimeXXX.h \
     DateTimeXXXToolBox.h \
     MsgManager.h \
-    datIO.h
+    datIO.h \
+    TrayIcon.h
 
 FORMS += \
         widget.ui \
@@ -50,3 +52,6 @@ FORMS += \
     Canvas.ui \
     DateTimeXXX.ui \
     DateTimeXXXToolBox.ui
+
+RESOURCES += \
+    main.qrc

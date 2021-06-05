@@ -33,6 +33,10 @@ void DateTimeXXXToolBox::init()
     ui->horizontalSlider_labelR->setValue(v[6]);
     ui->horizontalSlider_labelG->setValue(v[7]);
     ui->horizontalSlider_labelB->setValue(v[8]);
+
+    trayIcon = new TrayIcon(this);
+    connect(trayIcon, &TrayIcon::sigShow, [this]{ this->show(); });
+    connect(trayIcon, &TrayIcon::sigExit, [this]{ this->on_pushButton_close_clicked(); });
 }
 
 void DateTimeXXXToolBox::registerMsg()
