@@ -12,6 +12,8 @@
 #include <QFont>
 #include <QDebug>
 
+#include "DateTimeXXXToolBox.h"
+
 namespace Ui {
 class DateTimeXXX;
 }
@@ -30,7 +32,9 @@ protected:
 
 private:
     Ui::DateTimeXXX *ui;
+    DateTimeXXXToolBox* m_pToolBox;
 
+private:
     QString m_map0to10[11] = {
         "零", "壹", "贰",
         "叁", "肆", "伍",
@@ -45,6 +49,12 @@ private:
         int hour;
         int minute;
         int second;
+
+        int xMonth;
+        int xDay;
+        int xHour;
+        int xMinue;
+        int xSecond;
     }DateTimeInfo;
 
     QTimer m_timer;
@@ -52,13 +62,14 @@ private:
 
     QPen m_penNormal;
     QPen m_penHighlight;
+    QPen m_penLabel;
     QFont m_fontNormal;
     QFont m_fontHighlight;
 
 private:
     void init();
     QString itoStr(int i);
-    void getDateTime();
+    void getDateTimeInfo();
 
     void paintMonth(QPainter* painter);
     void paintDay(QPainter* painter);

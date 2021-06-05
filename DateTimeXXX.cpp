@@ -34,6 +34,7 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintHour(&painter);
     paintMinute(&painter);
     paintSecond(&painter);
+    paintLabel(&painter);
 }
 
 void DateTimeXXX::keyPressEvent(QKeyEvent *event)
@@ -49,10 +50,11 @@ void DateTimeXXX::init()
     this->setWindowFlag(Qt::FramelessWindowHint);
     this->showFullScreen();
 
-    getDateTime();
+    getDateTimeInfo();
 
     m_penHighlight.setColor(QColor(220, 234, 246));
     m_penNormal.setColor(QColor(118, 149, 150));
+    m_penLabel.setColor(QColor(150, 10, 10));
     m_fontNormal.setBold(false);
     m_fontNormal.setWeight(1);
     m_fontHighlight.setBold(true);
@@ -60,10 +62,12 @@ void DateTimeXXX::init()
 
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, [this]{
-        getDateTime();
+        getDateTimeInfo();
         update();
     });
     m_timer.start();
+
+    m_pToolBox = new DateTimeXXXToolBox(this);
 }
 
 QString DateTimeXXX::itoStr(int i)
@@ -81,7 +85,7 @@ QString DateTimeXXX::itoStr(int i)
     return str;
 }
 
-void DateTimeXXX::getDateTime()
+void DateTimeXXX::getDateTimeInfo()
 {
     QDate curDate = QDate::currentDate();
     QTime curTime = QTime::currentTime();
@@ -92,6 +96,12 @@ void DateTimeXXX::getDateTime()
     m_dateTimeInfo.hour        = curTime.hour();
     m_dateTimeInfo.minute      = curTime.minute();
     m_dateTimeInfo.second      = curTime.second();
+
+    m_dateTimeInfo.xMonth      = 70;
+    m_dateTimeInfo.xDay        = 120;
+    m_dateTimeInfo.xHour       = 170;
+    m_dateTimeInfo.xMinue      = 220;
+    m_dateTimeInfo.xSecond     = 270;
 }
 
 void DateTimeXXX::paintMonth(QPainter* painter)
@@ -106,7 +116,7 @@ void DateTimeXXX::paintMonth(QPainter* painter)
             painter->setFont(m_fontNormal);
         }
         else painter->setPen(m_penNormal);
-        painter->drawText(80, 0, i != 12 ? itoStr(i) : QString("拾贰"));
+        painter->drawText(m_dateTimeInfo.xMonth, 0, i != 12 ? itoStr(i) : QString("拾贰"));
         painter->restore();
     }
 }
@@ -124,7 +134,7 @@ void DateTimeXXX::paintDay(QPainter* painter)
             painter->setFont(m_fontNormal);
         }
         else painter->setPen(m_penNormal);
-        painter->drawText(120, 0, itoStr(i));
+        painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(i));
         painter->restore();
     }
 }
@@ -141,7 +151,7 @@ void DateTimeXXX::paintHour(QPainter* painter)
             painter->setFont(m_fontNormal);
         }
         else painter->setPen(m_penNormal);
-        painter->drawText(160, 0, itoStr(i));
+        painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(i));
         painter->restore();
     }
 }
@@ -158,7 +168,7 @@ void DateTimeXXX::paintMinute(QPainter* painter)
             painter->setFont(m_fontNormal);
         }
         else painter->setPen(m_penNormal);
-        painter->drawText(200, 0, itoStr(i));
+        painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(i));
         painter->restore();
     }
 }
@@ -175,12 +185,17 @@ void DateTimeXXX::paintSecond(QPainter* painter)
             painter->setFont(m_fontNormal);
         }
         else painter->setPen(m_penNormal);
-        painter->drawText(240, 0, itoStr(i));
+        painter->drawText(m_dateTimeInfo.xSecond, 0, itoStr(i));
         painter->restore();
     }
 }
 
 void DateTimeXXX::paintLabel(QPainter *painter)
 {
-
+    painter->setPen(m_penLabel);
+    painter->drawText(m_dateTimeInfo.xMonth  + 25, 0, QString("月"));
+    painter->drawText(m_dateTimeInfo.xDay    + 25, 0, QString("日"));
+    painter->drawText(m_dateTimeInfo.xHour   + 25, 0, QString("时"));
+    painter->drawText(m_dateTimeInfo.xMinue  + 25, 0, QString("分"));
+    painter->drawText(m_dateTimeInfo.xSecond + 25, 0, QString("秒"));
 }

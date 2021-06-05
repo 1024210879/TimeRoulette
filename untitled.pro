@@ -29,17 +29,20 @@ SOURCES += \
     MovableWidget.cpp \
     ToolBox.cpp \
     Canvas.cpp \
-    DateTimeXXX.cpp
+    DateTimeXXX.cpp \
+    DateTimeXXXToolBox.cpp
 
 HEADERS += \
         widget.h \
     MovableWidget.h \
     ToolBox.h \
     Canvas.h \
-    DateTimeXXX.h
+    DateTimeXXX.h \
+    DateTimeXXXToolBox.h
 
 FORMS += \
         widget.ui \
     ToolBox.ui \
     Canvas.ui \
-    DateTimeXXX.ui
+    DateTimeXXX.ui \
+    DateTimeXXXToolBox.ui
