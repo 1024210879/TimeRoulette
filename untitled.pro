@@ -30,7 +30,8 @@ SOURCES += \
     ToolBox.cpp \
     Canvas.cpp \
     DateTimeXXX.cpp \
-    DateTimeXXXToolBox.cpp
+    DateTimeXXXToolBox.cpp \
+    MsgManager.cpp
 
 HEADERS += \
         widget.h \
@@ -38,7 +39,8 @@ HEADERS += \
     ToolBox.h \
     Canvas.h \
     DateTimeXXX.h \
-    DateTimeXXXToolBox.h
+    DateTimeXXXToolBox.h \
+    MsgManager.h
 
 FORMS += \
         widget.ui \

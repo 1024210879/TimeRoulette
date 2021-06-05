@@ -7,6 +7,7 @@ DateTimeXXX::DateTimeXXX(QWidget *parent) :
 {
     ui->setupUi(this);
     init();
+    registerMsg();
 }
 
 DateTimeXXX::~DateTimeXXX()
@@ -43,6 +44,11 @@ void DateTimeXXX::keyPressEvent(QKeyEvent *event)
     {
         this->close();
     }
+    else if (event->key() == Qt::Key_T)
+    {
+        m_pToolBox->move(10, 10);
+        m_pToolBox->show();
+    }
 }
 
 void DateTimeXXX::init()
@@ -68,6 +74,14 @@ void DateTimeXXX::init()
     m_timer.start();
 
     m_pToolBox = new DateTimeXXXToolBox(this);
+}
+
+void DateTimeXXX::registerMsg()
+{
+    MsgManager::instance()->registerSlot(
+                QString("changeNormalColor"),
+                this,
+                SLOT(slotChangeColor(QString,QString,int)));
 }
 
 QString DateTimeXXX::itoStr(int i)
@@ -198,4 +212,45 @@ void DateTimeXXX::paintLabel(QPainter *painter)
     painter->drawText(m_dateTimeInfo.xHour   + 25, 0, QString("时"));
     painter->drawText(m_dateTimeInfo.xMinue  + 25, 0, QString("分"));
     painter->drawText(m_dateTimeInfo.xSecond + 25, 0, QString("秒"));
+}
+
+void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
+{
+    QColor color;
+    if (topic == "normal")
+    {
+        color = m_penNormal.color();
+        if (channel == "R"){
+            color.setRed(value);
+        }else if (channel == "G"){
+            color.setGreen(value);
+        }else if (channel == "B"){
+            color.setBlue(value);
+        }
+        m_penNormal.setColor(color);
+    }
+    else if (topic == "highlight")
+    {
+        color = m_penHighlight.color();
+        if (channel == "R"){
+            color.setRed(value);
+        }else if (channel == "G"){
+            color.setGreen(value);
+        }else if (channel == "B"){
+            color.setBlue(value);
+        }
+        m_penHighlight.setColor(color);
+    }
+    else if (topic == "label")
+    {
+        color = m_penLabel.color();
+        if (channel == "R"){
+            color.setRed(value);
+        }else if (channel == "G"){
+            color.setGreen(value);
+        }else if (channel == "B"){
+            color.setBlue(value);
+        }
+        m_penLabel.setColor(color);
+    }
 }

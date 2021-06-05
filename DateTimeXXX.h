@@ -13,6 +13,7 @@
 #include <QDebug>
 
 #include "DateTimeXXXToolBox.h"
+#include "MsgManager.h"
 
 namespace Ui {
 class DateTimeXXX;
@@ -68,6 +69,7 @@ private:
 
 private:
     void init();
+    void registerMsg();
     QString itoStr(int i);
     void getDateTimeInfo();
 
@@ -77,6 +79,9 @@ private:
     void paintMinute(QPainter* painter);
     void paintSecond(QPainter* painter);
     void paintLabel(QPainter* painter);
+
+private slots:
+    void slotChangeColor(QString topic, QString channel, int value);
 };
 
 #endif // DATETIMEXXX_H
