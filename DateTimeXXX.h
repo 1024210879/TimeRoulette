@@ -11,7 +11,7 @@
 #include <QTime>
 #include <QFont>
 #include <QScreen>
-//#include <QDebug>
+#include <thread>
 
 #include "DateTimeXXXToolBox.h"
 #include "MsgManager.h"
@@ -31,7 +31,6 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *event);
-//    void keyPressEvent(QKeyEvent *event);
 
 private:
     Ui::DateTimeXXX *ui;
@@ -59,9 +58,9 @@ private:
         int xMinue;
         int xSecond;
     }DateTimeInfo;
+    DateTimeInfo m_dateTimeInfo;
 
     QTimer m_timer;
-    DateTimeInfo m_dateTimeInfo;
     int m_spacing;
 
     QPen m_penNormal;
@@ -83,9 +82,12 @@ private:
     void paintSecond(QPainter* painter);
     void paintLabel(QPainter* painter);
 
+    void paintPointerHour(QPainter* painter);
+    void paintPointerMinute(QPainter* painter);
+    void paintPointerSecond(QPainter* painter);
+
 private slots:
     void slotChangeColor(QString topic, QString channel, int value);
-    void slotChangeSpacing(int value);
     void slotExit();
 };
 

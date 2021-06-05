@@ -12,6 +12,7 @@ DateTimeXXX::DateTimeXXX(QWidget *parent) :
 
 DateTimeXXX::~DateTimeXXX()
 {
+    m_pToolBox->deleteLater();
     delete ui;
 }
 
@@ -26,6 +27,10 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     painter.translate(w >> 1, h >> 1);
     painter.scale(std::min(w, h)/600.0, std::min(w, h)/600.0);
 
+    paintPointerHour(&painter);
+    paintPointerMinute(&painter);
+    paintPointerSecond(&painter);
+
     paintMonth(&painter);
     paintDay(&painter);
     paintHour(&painter);
@@ -33,19 +38,6 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintSecond(&painter);
     paintLabel(&painter);
 }
-
-//void DateTimeXXX::keyPressEvent(QKeyEvent *event)
-//{
-//    if (event->key() == Qt::Key_Escape)
-//    {
-//        this->close();
-//    }
-//    else if (event->key() == Qt::Key_T && event->modifiers() == Qt::ControlModifier)
-//    {
-//        m_pToolBox->move(10, 10);
-//        m_pToolBox->show();
-//    }
-//}
 
 void DateTimeXXX::init()
 {
@@ -82,12 +74,11 @@ void DateTimeXXX::init()
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, [this]{
         getDateTimeInfo();
-        this->repaint();
+        this->update();
     });
     m_timer.start();
 
     m_pToolBox = new DateTimeXXXToolBox;
-    m_pToolBox->show();
 }
 
 void DateTimeXXX::registerMsg()
@@ -96,11 +87,6 @@ void DateTimeXXX::registerMsg()
                 QString("changeNormalColor"),
                 this,
                 SLOT(slotChangeColor(QString,QString,int)));
-
-    MsgManager::instance()->registerSlot(
-                QString("changeSpacing"),
-                this,
-                SLOT(slotChangeSpacing(int)));
 
     MsgManager::instance()->registerSlot(
                 QString("exit"),
@@ -239,6 +225,57 @@ void DateTimeXXX::paintLabel(QPainter *painter)
     painter->drawText(m_dateTimeInfo.xSecond + 25, 0, QString("秒"));
 }
 
+void DateTimeXXX::paintPointerHour(QPainter *painter)
+{
+    QPainterPath path;
+    path.moveTo(-10, 0);
+    path.lineTo(0, -10);
+    path.lineTo(10, 0);
+    path.lineTo(0, m_dateTimeInfo.xHour);
+    path.closeSubpath();
+
+    painter->save();
+    painter->rotate(m_dateTimeInfo.hour*15 + m_dateTimeInfo.minute/60.0*15);
+    painter->setPen(m_penNormal);
+    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->drawPath(path);
+    painter->restore();
+}
+
+void DateTimeXXX::paintPointerMinute(QPainter *painter)
+{
+    QPainterPath path;
+    path.moveTo(-10, 0);
+    path.lineTo(0, -20);
+    path.lineTo(10, 0);
+    path.lineTo(0, m_dateTimeInfo.xMinue);
+    path.closeSubpath();
+
+    painter->save();
+    painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6);
+    painter->setPen(m_penLabel);
+    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->drawPath(path);
+    painter->restore();
+}
+
+void DateTimeXXX::paintPointerSecond(QPainter *painter)
+{
+    QPainterPath path;
+    path.moveTo(-10, 0);
+    path.lineTo(0, -30);
+    path.lineTo(10, 0);
+    path.lineTo(0, m_dateTimeInfo.xSecond);
+    path.closeSubpath();
+
+    painter->save();
+    painter->rotate(m_dateTimeInfo.second*6);
+    painter->setPen(m_penHighlight);
+    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->drawPath(path);
+    painter->restore();
+}
+
 void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
 {
     QColor color;
@@ -278,13 +315,6 @@ void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
         }
         m_penLabel.setColor(color);
     }
-
-    this->repaint();
-}
-
-void DateTimeXXX::slotChangeSpacing(int value)
-{
-    m_spacing = value;
 
     this->repaint();
 }

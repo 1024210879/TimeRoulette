@@ -47,11 +47,6 @@ void DateTimeXXXToolBox::registerMsg()
                 SIGNAL(sigChangeColor(QString,QString,int)));
 
     MsgManager::instance()->registerSignal(
-                QString("changeSpacing"),
-                this,
-                SIGNAL(sigChangeSpacing(int)));
-
-    MsgManager::instance()->registerSignal(
                 QString("exit"),
                 this,
                 SIGNAL(sigExit()));
@@ -107,11 +102,6 @@ void DateTimeXXXToolBox::on_horizontalSlider_labelB_valueChanged(int value)
     emit sigChangeColor(QString("label"), QString("B"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_spacing_valueChanged(int value)
-{
-    emit sigChangeSpacing(value);
-}
-
 void DateTimeXXXToolBox::on_pushButton_save_clicked()
 {
     std::vector<uchar> v;
@@ -131,5 +121,5 @@ void DateTimeXXXToolBox::on_pushButton_save_clicked()
 void DateTimeXXXToolBox::on_pushButton_close_clicked()
 {
     emit sigExit();
-    this->close();
+    this->deleteLater();
 }

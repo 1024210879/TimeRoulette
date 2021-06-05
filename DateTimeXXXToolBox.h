@@ -42,8 +42,6 @@ private slots:
 
     void on_horizontalSlider_labelB_valueChanged(int value);
 
-    void on_horizontalSlider_spacing_valueChanged(int value);
-
     void on_pushButton_save_clicked();
 
     void on_pushButton_close_clicked();
@@ -58,7 +56,6 @@ private:
 
 signals:
     void sigChangeColor(QString, QString, int);
-    void sigChangeSpacing(int);
     void sigExit();
 };
 
