@@ -25,10 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        widget.cpp \
     MovableWidget.cpp \
-    ToolBox.cpp \
-    Canvas.cpp \
     DateTimeXXX.cpp \
     DateTimeXXXToolBox.cpp \
     MsgManager.cpp \
@@ -36,10 +33,7 @@ SOURCES += \
     TrayIcon.cpp
 
 HEADERS += \
-        widget.h \
     MovableWidget.h \
-    ToolBox.h \
-    Canvas.h \
     DateTimeXXX.h \
     DateTimeXXXToolBox.h \
     MsgManager.h \
@@ -47,9 +41,6 @@ HEADERS += \
     TrayIcon.h
 
 FORMS += \
-        widget.ui \
-    ToolBox.ui \
-    Canvas.ui \
     DateTimeXXX.ui \
     DateTimeXXXToolBox.ui
 

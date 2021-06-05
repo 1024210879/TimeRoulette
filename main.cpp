@@ -1,4 +1,3 @@
-#include "widget.h"
 #include "DateTimeXXX.h"
 #include <windows.h>
 #include <QApplication>
@@ -35,6 +34,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     DateTimeXXX w;
+    w.setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    w.setWindowFlag(Qt::FramelessWindowHint);
+    w.setAttribute(Qt::WA_TranslucentBackground, true);
+
 
     HWND desktopHwnd = findDesktopIconWnd();
     // 设置桌面为父窗口

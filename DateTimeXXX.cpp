@@ -21,6 +21,8 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
+    getDateTimeInfo();
+
     const int w = this->width();
     const int h = this->height();
 
@@ -41,17 +43,11 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
 
 void DateTimeXXX::init()
 {
-    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
-    this->setWindowFlag(Qt::FramelessWindowHint);
-    this->setAttribute(Qt::WA_TranslucentBackground, true);
-
     QList<QScreen *> list_screen =  QGuiApplication::screens();
     QRect rect = list_screen.at(0)->geometry();
     const int sw = rect.width();
     const int sh = rect.height();
     this->setFixedSize(sw, sh);
-
-    getDateTimeInfo();
 
     std::vector<uchar> v = datIO::readDat();
     if (!v.empty())
@@ -73,7 +69,6 @@ void DateTimeXXX::init()
 
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, [this]{
-        getDateTimeInfo();
         this->update();
     });
     m_timer.start();
