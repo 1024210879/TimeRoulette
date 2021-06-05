@@ -27,6 +27,7 @@ protected:
 private:
     Ui::Canvas *ui;
     QTimer m_timer;
+    unsigned int m_speed;
 
 private:
     void init();
@@ -34,7 +35,7 @@ private:
     QColor randColor(int low, int high);
 
 private slots:
-    void slotTimerIntervalChanged(int value);
+    void slotSpeedChanged(int value);
     void slotPlay();
 };
 

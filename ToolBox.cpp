@@ -18,14 +18,14 @@ ToolBox::~ToolBox()
 
 void ToolBox::on_horizontalSlider_timerInterval_valueChanged(int value)
 {
-    ui->label_timerInterval->setText("speed: " + QString::number(1000.0/value, 'f', 2));
+    ui->label_timerInterval->setText("speed: " + QString::number(value));
     emit sigValueChanged(value);
 }
 
 void ToolBox::init()
 {
     ui->horizontalSlider_timerInterval->setMinimum(1);
-    ui->horizontalSlider_timerInterval->setMaximum(33);
+    ui->horizontalSlider_timerInterval->setMaximum(20);
     ui->horizontalSlider_timerInterval->setValue(1);
 
     ui->pushButton_play->setProperty("status", QVariant(false));

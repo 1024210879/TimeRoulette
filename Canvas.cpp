@@ -17,7 +17,7 @@ Canvas::~Canvas()
 void Canvas::paintEvent(QPaintEvent *event)
 {
     static int counter = -1;
-    counter = (counter+1)%360;
+    counter = (counter+m_speed)%360;
 
     const int w = this->width();
     const int h = this->height();
@@ -79,6 +79,7 @@ void Canvas::paintEvent(QPaintEvent *event)
 void Canvas::init()
 {
     srand(time(0));
+    m_speed = 1;
     m_timer.setInterval(1);
     connect(&m_timer, &QTimer::timeout, [this]{update();});
 }
@@ -93,9 +94,9 @@ QColor Canvas::randColor(int low, int high)
     return QColor(randInt(low, high), randInt(low, high), randInt(low, high), randInt(low, high));
 }
 
-void Canvas::slotTimerIntervalChanged(int value)
+void Canvas::slotSpeedChanged(int value)
 {
-    m_timer.setInterval(value);
+    m_speed = value;
 }
 
 void Canvas::slotPlay()
