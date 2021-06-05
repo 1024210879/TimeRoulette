@@ -20,6 +20,9 @@ void Widget::init()
 {
     m_pToolBox = ui->wgtToolBox;
     m_pCanvas = ui->wgtCanvas;
+
+    m_pDateTimeXXX = new DateTimeXXX;
+    m_pDateTimeXXX->show();
 }
 
 void Widget::createConnection()

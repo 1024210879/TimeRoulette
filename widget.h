@@ -5,6 +5,7 @@
 
 #include "ToolBox.h"
 #include "Canvas.h"
+#include "DateTimeXXX.h"
 
 namespace Ui {
 class Widget;
@@ -22,6 +23,7 @@ private:
     Ui::Widget *ui;
     ToolBox* m_pToolBox;
     Canvas* m_pCanvas;
+    DateTimeXXX* m_pDateTimeXXX;
 
 private:
     void init();
