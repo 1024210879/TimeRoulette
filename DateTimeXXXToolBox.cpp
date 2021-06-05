@@ -2,7 +2,7 @@
 #include "ui_DateTimeXXXToolBox.h"
 
 DateTimeXXXToolBox::DateTimeXXXToolBox(QWidget *parent) :
-    QWidget(parent),
+    MovableWidget(parent),
     ui(new Ui::DateTimeXXXToolBox)
 {
     ui->setupUi(this);
@@ -27,11 +27,11 @@ void DateTimeXXXToolBox::registerMsg()
                 QString("changeNormalColor"),
                 this,
                 SIGNAL(sigChangeColor(QString,QString,int)));
-}
 
-void DateTimeXXXToolBox::createConnection()
-{
-
+    MsgManager::instance()->registerSignal(
+                QString("changeSpacing"),
+                this,
+                SIGNAL(sigChangeSpacing(int)));
 }
 
 void DateTimeXXXToolBox::on_pushButton_hide_clicked()
@@ -82,4 +82,9 @@ void DateTimeXXXToolBox::on_horizontalSlider_labelG_valueChanged(int value)
 void DateTimeXXXToolBox::on_horizontalSlider_labelB_valueChanged(int value)
 {
     emit sigChangeColor(QString("label"), QString("B"), value);
+}
+
+void DateTimeXXXToolBox::on_horizontalSlider_spacing_valueChanged(int value)
+{
+    emit sigChangeSpacing(value);
 }

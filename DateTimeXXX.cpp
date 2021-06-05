@@ -44,7 +44,7 @@ void DateTimeXXX::keyPressEvent(QKeyEvent *event)
     {
         this->close();
     }
-    else if (event->key() == Qt::Key_T)
+    else if (event->key() == Qt::Key_T && event->modifiers() == Qt::ControlModifier)
     {
         m_pToolBox->move(10, 10);
         m_pToolBox->show();
@@ -69,7 +69,7 @@ void DateTimeXXX::init()
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, [this]{
         getDateTimeInfo();
-        update();
+        this->repaint();
     });
     m_timer.start();
 
@@ -82,6 +82,11 @@ void DateTimeXXX::registerMsg()
                 QString("changeNormalColor"),
                 this,
                 SLOT(slotChangeColor(QString,QString,int)));
+
+    MsgManager::instance()->registerSlot(
+                QString("changeSpacing"),
+                this,
+                SLOT(slotChangeSpacing(int)));
 }
 
 QString DateTimeXXX::itoStr(int i)
@@ -111,11 +116,12 @@ void DateTimeXXX::getDateTimeInfo()
     m_dateTimeInfo.minute      = curTime.minute();
     m_dateTimeInfo.second      = curTime.second();
 
+    m_spacing = 50;
     m_dateTimeInfo.xMonth      = 70;
-    m_dateTimeInfo.xDay        = 120;
-    m_dateTimeInfo.xHour       = 170;
-    m_dateTimeInfo.xMinue      = 220;
-    m_dateTimeInfo.xSecond     = 270;
+    m_dateTimeInfo.xDay        = 70+1*m_spacing;
+    m_dateTimeInfo.xHour       = 70+2*m_spacing;
+    m_dateTimeInfo.xMinue      = 70+3*m_spacing;
+    m_dateTimeInfo.xSecond     = 70+4*m_spacing;
 }
 
 void DateTimeXXX::paintMonth(QPainter* painter)
@@ -253,4 +259,9 @@ void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
         }
         m_penLabel.setColor(color);
     }
+}
+
+void DateTimeXXX::slotChangeSpacing(int value)
+{
+    m_spacing = value;
 }

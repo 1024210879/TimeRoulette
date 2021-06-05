@@ -10,7 +10,7 @@ namespace Ui {
 class DateTimeXXXToolBox;
 }
 
-class DateTimeXXXToolBox : public QWidget
+class DateTimeXXXToolBox : public MovableWidget
 {
     Q_OBJECT
 
@@ -39,16 +39,18 @@ private slots:
 
     void on_horizontalSlider_labelB_valueChanged(int value);
 
+    void on_horizontalSlider_spacing_valueChanged(int value);
+
 private:
     Ui::DateTimeXXXToolBox *ui;
 
 private:
     void init();
     void registerMsg();
-    void createConnection();
 
 signals:
     void sigChangeColor(QString, QString, int);
+    void sigChangeSpacing(int);
 };
 
 #endif // DATETIMEXXXTOOLBOX_H

@@ -60,6 +60,7 @@ private:
 
     QTimer m_timer;
     DateTimeInfo m_dateTimeInfo;
+    int m_spacing;
 
     QPen m_penNormal;
     QPen m_penHighlight;
@@ -82,6 +83,7 @@ private:
 
 private slots:
     void slotChangeColor(QString topic, QString channel, int value);
+    void slotChangeSpacing(int value);
 };
 
 #endif // DATETIMEXXX_H

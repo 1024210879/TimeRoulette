@@ -56,4 +56,5 @@ void MovableWidget::moveByDrag(QMouseEvent *event)
     }
 
     this->move(ptCur);
+    this->repaint();
 }
