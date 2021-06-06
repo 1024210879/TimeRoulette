@@ -86,6 +86,7 @@ private:
     void paintPointerHour(QPainter* painter);
     void paintPointerMinute(QPainter* painter);
     void paintPointerSecond(QPainter* painter);
+    void paintCenterCircle(QPainter* painter);
 
 private slots:
     void slotChangeColor(QString topic, QString channel, int value);

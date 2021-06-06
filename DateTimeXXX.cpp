@@ -42,6 +42,7 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintPointerHour(&painter);
     paintPointerMinute(&painter);
     paintPointerSecond(&painter);
+    paintCenterCircle(&painter);
 }
 
 void DateTimeXXX::init()
@@ -281,7 +282,7 @@ void DateTimeXXX::paintPointerHour(QPainter *painter)
 
     painter->save();
     painter->rotate((m_dateTimeInfo.hour%12)*30 + m_dateTimeInfo.minute/60.0*30);
-    painter->setPen(m_penNormal);
+    painter->setPen(QPen(QColor(200, 200, 200, 150)));
     painter->setBrush(QColor(200, 200, 200, 128));
     painter->drawPath(path);
     painter->restore();
@@ -298,7 +299,7 @@ void DateTimeXXX::paintPointerMinute(QPainter *painter)
 
     painter->save();
     painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6);
-    painter->setPen(m_penLabel);
+    painter->setPen(QPen(QColor(200, 200, 200, 150)));
     painter->setBrush(QColor(200, 200, 200, 128));
     painter->drawPath(path);
     painter->restore();
@@ -315,8 +316,20 @@ void DateTimeXXX::paintPointerSecond(QPainter *painter)
 
     painter->save();
     painter->rotate(m_dateTimeInfo.second*6);
-    painter->setPen(m_penHighlight);
+    painter->setPen(QPen(QColor(200, 200, 200, 150)));
     painter->setBrush(QColor(200, 200, 200, 128));
+    painter->drawPath(path);
+    painter->restore();
+}
+
+void DateTimeXXX::paintCenterCircle(QPainter *painter)
+{
+    QPainterPath path;
+    path.addEllipse(QPointF(0, 0), 3, 3);
+
+    painter->save();
+    painter->setPen(QPen(QColor(30, 30, 30, 10)));
+    painter->setBrush(QBrush(QColor(128, 128, 128, 30)));
     painter->drawPath(path);
     painter->restore();
 }
