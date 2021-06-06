@@ -38,6 +38,7 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintHour(&painter);
     paintMinute(&painter);
     paintSecond(&painter);
+    paintCurDateTime(&painter);
     paintLabel(&painter);
 }
 
@@ -132,6 +133,7 @@ void DateTimeXXX::paintMonth(QPainter* painter)
         painter->rotate(i*angle - m_dateTimeInfo.month*angle);
         if (m_dateTimeInfo.month == i)
         {
+            painter->restore();
             continue;
         }
         painter->setPen(m_penNormal);
@@ -139,11 +141,6 @@ void DateTimeXXX::paintMonth(QPainter* painter)
         painter->drawText(m_dateTimeInfo.xMonth, 0, i != 12 ? itoStr(i) : QString("拾贰"));
         painter->restore();
     }
-
-    painter->save();
-    painter->setPen(m_penHighlight);
-    painter->drawText(m_dateTimeInfo.xMonth, 0, m_dateTimeInfo.month != 12 ? itoStr(m_dateTimeInfo.month) : QString("拾贰"));
-    painter->restore();
 }
 
 void DateTimeXXX::paintDay(QPainter* painter)
@@ -155,6 +152,7 @@ void DateTimeXXX::paintDay(QPainter* painter)
         painter->rotate(i*angle - m_dateTimeInfo.day*angle);
         if (m_dateTimeInfo.day == i)
         {
+            painter->restore();
             continue;
         }
         painter->setPen(m_penNormal);
@@ -162,11 +160,6 @@ void DateTimeXXX::paintDay(QPainter* painter)
         painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(i));
         painter->restore();
     }
-
-    painter->save();
-    painter->setPen(m_penHighlight);
-    painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(m_dateTimeInfo.day));
-    painter->restore();
 }
 
 void DateTimeXXX::paintHour(QPainter* painter)
@@ -178,6 +171,7 @@ void DateTimeXXX::paintHour(QPainter* painter)
         painter->rotate(i*angle - m_dateTimeInfo.hour*angle);
         if (m_dateTimeInfo.hour == i)
         {
+            painter->restore();
             continue;
         }
         painter->setPen(m_penNormal);
@@ -185,11 +179,6 @@ void DateTimeXXX::paintHour(QPainter* painter)
         painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(i));
         painter->restore();
     }
-
-    painter->save();
-    painter->setPen(m_penHighlight);
-    painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(m_dateTimeInfo.hour));
-    painter->restore();
 }
 
 void DateTimeXXX::paintMinute(QPainter* painter)
@@ -201,6 +190,7 @@ void DateTimeXXX::paintMinute(QPainter* painter)
         painter->rotate(i*angle - m_dateTimeInfo.minute*angle);
         if (m_dateTimeInfo.minute == i)
         {
+            painter->restore();
             continue;
         }
         painter->setPen(m_penNormal);
@@ -208,11 +198,6 @@ void DateTimeXXX::paintMinute(QPainter* painter)
         painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(i));
         painter->restore();
     }
-
-    painter->save();
-    painter->setPen(m_penHighlight);
-    painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(m_dateTimeInfo.minute));
-    painter->restore();
 }
 
 void DateTimeXXX::paintSecond(QPainter* painter)
@@ -223,15 +208,36 @@ void DateTimeXXX::paintSecond(QPainter* painter)
         painter->rotate(i*6 - m_dateTimeInfo.second*6);
         if (m_dateTimeInfo.second == i)
         {
-            painter->setPen(m_penHighlight);
+            painter->restore();
+            continue;
         }
-        else
-        {
-            painter->setPen(m_penNormal);
-        }
+        painter->setPen(m_penNormal);
         painter->drawText(m_dateTimeInfo.xSecond, 0, itoStr(i));
         painter->restore();
     }
+}
+
+void DateTimeXXX::paintCurDateTime(QPainter *painter)
+{
+    // month
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xMonth, 0, m_dateTimeInfo.month != 12 ? itoStr(m_dateTimeInfo.month) : QString("拾贰"));
+
+    // day
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(m_dateTimeInfo.day));
+
+    // hour
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(m_dateTimeInfo.hour));
+
+    // minute
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(m_dateTimeInfo.minute));
+
+    // second
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xSecond, 0, itoStr(m_dateTimeInfo.second));
 }
 
 void DateTimeXXX::paintLabel(QPainter *painter)

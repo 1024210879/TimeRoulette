@@ -78,6 +78,7 @@ private:
     void paintHour(QPainter* painter);
     void paintMinute(QPainter* painter);
     void paintSecond(QPainter* painter);
+    void paintCurDateTime(QPainter* painter);
     void paintLabel(QPainter* painter);
 
     void paintPointerHour(QPainter* painter);
