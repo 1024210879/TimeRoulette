@@ -29,17 +29,19 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     painter.translate(w >> 1, h >> 1);
     painter.scale(std::min(w, h)/600.0, std::min(w, h)/600.0);
 
-    paintPointerHour(&painter);
-    paintPointerMinute(&painter);
-    paintPointerSecond(&painter);
-
     paintMonth(&painter);
     paintDay(&painter);
     paintHour(&painter);
     paintMinute(&painter);
     paintSecond(&painter);
+
+    paintCurDateTimeBackground(&painter);
     paintCurDateTime(&painter);
     paintLabel(&painter);
+
+    paintPointerHour(&painter);
+    paintPointerMinute(&painter);
+    paintPointerSecond(&painter);
 }
 
 void DateTimeXXX::init()
@@ -217,6 +219,24 @@ void DateTimeXXX::paintSecond(QPainter* painter)
     }
 }
 
+void DateTimeXXX::paintCurDateTimeBackground(QPainter *painter)
+{
+    painter->save();
+
+    QPen pen(QColor(30, 30, 30));
+    QBrush brush(QColor(128, 128, 128, 230));
+    painter->setPen(pen);
+    painter->setBrush(brush);
+
+    painter->drawRoundedRect(m_dateTimeInfo.xMonth  - 5, -15, 45, 20, 5, 5);
+    painter->drawRoundedRect(m_dateTimeInfo.xDay    - 5, -15, 45, 20, 5, 5);
+    painter->drawRoundedRect(m_dateTimeInfo.xHour   - 5, -15, 45, 20, 5, 5);
+    painter->drawRoundedRect(m_dateTimeInfo.xMinue  - 5, -15, 45, 20, 5, 5);
+    painter->drawRoundedRect(m_dateTimeInfo.xSecond - 5, -15, 45, 20, 5, 5);
+
+    painter->restore();
+}
+
 void DateTimeXXX::paintCurDateTime(QPainter *painter)
 {
     // month
@@ -254,15 +274,15 @@ void DateTimeXXX::paintPointerHour(QPainter *painter)
 {
     QPainterPath path;
     path.moveTo(-15, 0);
-    path.lineTo(0, -10);
+    path.lineTo(0, 10);
     path.lineTo(15, 0);
-    path.lineTo(0, m_dateTimeInfo.xHour);
+    path.lineTo(0, -m_dateTimeInfo.xHour);
     path.closeSubpath();
 
     painter->save();
-    painter->rotate(m_dateTimeInfo.hour*15 + m_dateTimeInfo.minute/60.0*15);
+    painter->rotate((m_dateTimeInfo.hour%12)*30 + m_dateTimeInfo.minute/60.0*30);
     painter->setPen(m_penNormal);
-    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->setBrush(QColor(200, 200, 200, 128));
     painter->drawPath(path);
     painter->restore();
 }
@@ -277,9 +297,9 @@ void DateTimeXXX::paintPointerMinute(QPainter *painter)
     path.closeSubpath();
 
     painter->save();
-    painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6 - 6.8);
+    painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6);
     painter->setPen(m_penLabel);
-    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->setBrush(QColor(200, 200, 200, 128));
     painter->drawPath(path);
     painter->restore();
 }
@@ -294,9 +314,9 @@ void DateTimeXXX::paintPointerSecond(QPainter *painter)
     path.closeSubpath();
 
     painter->save();
-    painter->rotate(m_dateTimeInfo.second*6 - 6.8);
+    painter->rotate(m_dateTimeInfo.second*6);
     painter->setPen(m_penHighlight);
-    painter->setBrush(QColor(200, 200, 200, 200));
+    painter->setBrush(QColor(200, 200, 200, 128));
     painter->drawPath(path);
     painter->restore();
 }
