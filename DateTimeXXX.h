@@ -66,8 +66,6 @@ private:
     QPen m_penNormal;
     QPen m_penHighlight;
     QPen m_penLabel;
-    QFont m_fontNormal;
-    QFont m_fontHighlight;
 
 private:
     void init();

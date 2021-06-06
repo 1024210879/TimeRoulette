@@ -66,11 +66,6 @@ void DateTimeXXX::init()
     m_penNormal.setWidthF(0.5);
     m_penLabel.setWidthF(0.5);
 
-    m_fontNormal.setBold(false);
-    m_fontNormal.setWeight(1);
-    m_fontHighlight.setBold(true);
-    m_fontHighlight.setWeight(2);
-
     m_timer.setInterval(1000);
     connect(&m_timer, &QTimer::timeout, [this]{
         this->update();
@@ -130,19 +125,25 @@ void DateTimeXXX::getDateTimeInfo()
 
 void DateTimeXXX::paintMonth(QPainter* painter)
 {
+    const double angle = 360.0/12.0;
     for (int i = 1; i <= 12; ++i)
     {
         painter->save();
-        painter->rotate(i*30 - m_dateTimeInfo.month*30);
+        painter->rotate(i*angle - m_dateTimeInfo.month*angle);
         if (m_dateTimeInfo.month == i)
         {
-            painter->setPen(m_penHighlight);
-            painter->setFont(m_fontNormal);
+            continue;
         }
-        else painter->setPen(m_penNormal);
+        painter->setPen(m_penNormal);
+        painter->rotate(-m_dateTimeInfo.day*1.0/m_dateTimeInfo.daysInMonth*angle);
         painter->drawText(m_dateTimeInfo.xMonth, 0, i != 12 ? itoStr(i) : QString("拾贰"));
         painter->restore();
     }
+
+    painter->save();
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xMonth, 0, m_dateTimeInfo.month != 12 ? itoStr(m_dateTimeInfo.month) : QString("拾贰"));
+    painter->restore();
 }
 
 void DateTimeXXX::paintDay(QPainter* painter)
@@ -154,47 +155,64 @@ void DateTimeXXX::paintDay(QPainter* painter)
         painter->rotate(i*angle - m_dateTimeInfo.day*angle);
         if (m_dateTimeInfo.day == i)
         {
-            painter->setPen(m_penHighlight);
-            painter->setFont(m_fontNormal);
+            continue;
         }
-        else painter->setPen(m_penNormal);
+        painter->setPen(m_penNormal);
+        painter->rotate(-m_dateTimeInfo.hour/24.0*angle);
         painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(i));
         painter->restore();
     }
+
+    painter->save();
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xDay, 0, itoStr(m_dateTimeInfo.day));
+    painter->restore();
 }
 
 void DateTimeXXX::paintHour(QPainter* painter)
 {
+    const double angle = 360.0/24.0;
     for (int i = 0; i < 24; ++i)
     {
         painter->save();
-        painter->rotate(i*15 - m_dateTimeInfo.hour*15);
+        painter->rotate(i*angle - m_dateTimeInfo.hour*angle);
         if (m_dateTimeInfo.hour == i)
         {
-            painter->setPen(m_penHighlight);
-            painter->setFont(m_fontNormal);
+            continue;
         }
-        else painter->setPen(m_penNormal);
+        painter->setPen(m_penNormal);
+        painter->rotate(-m_dateTimeInfo.minute/60.0*angle);
         painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(i));
         painter->restore();
     }
+
+    painter->save();
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xHour, 0, itoStr(m_dateTimeInfo.hour));
+    painter->restore();
 }
 
 void DateTimeXXX::paintMinute(QPainter* painter)
 {
+    const double angle = 360.0/60.0;
     for (int i = 0; i < 60; ++i)
     {
         painter->save();
-        painter->rotate(i*6 - m_dateTimeInfo.minute*6);
+        painter->rotate(i*angle - m_dateTimeInfo.minute*angle);
         if (m_dateTimeInfo.minute == i)
         {
-            painter->setPen(m_penHighlight);
-            painter->setFont(m_fontNormal);
+            continue;
         }
-        else painter->setPen(m_penNormal);
+        painter->setPen(m_penNormal);
+        painter->rotate(-m_dateTimeInfo.second/60.0*angle);
         painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(i));
         painter->restore();
     }
+
+    painter->save();
+    painter->setPen(m_penHighlight);
+    painter->drawText(m_dateTimeInfo.xMinue, 0, itoStr(m_dateTimeInfo.minute));
+    painter->restore();
 }
 
 void DateTimeXXX::paintSecond(QPainter* painter)
@@ -206,9 +224,11 @@ void DateTimeXXX::paintSecond(QPainter* painter)
         if (m_dateTimeInfo.second == i)
         {
             painter->setPen(m_penHighlight);
-            painter->setFont(m_fontNormal);
         }
-        else painter->setPen(m_penNormal);
+        else
+        {
+            painter->setPen(m_penNormal);
+        }
         painter->drawText(m_dateTimeInfo.xSecond, 0, itoStr(i));
         painter->restore();
     }
@@ -251,7 +271,7 @@ void DateTimeXXX::paintPointerMinute(QPainter *painter)
     path.closeSubpath();
 
     painter->save();
-    painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6);
+    painter->rotate(m_dateTimeInfo.minute*6 + m_dateTimeInfo.second/60.0*6 - 6.8);
     painter->setPen(m_penLabel);
     painter->setBrush(QColor(200, 200, 200, 200));
     painter->drawPath(path);
