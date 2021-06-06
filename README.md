@@ -8,4 +8,4 @@ QtCreator 4.3.0 <br/>
 Qt 5.9.0
 
 # demo
-![demo.png]("https://github.com/1024210879/TimeRoulette/blob/main/images/demo.png")
+![demo](images/demo.png)
