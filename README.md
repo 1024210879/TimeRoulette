@@ -8,4 +8,5 @@ QtCreator 4.3.0 <br/>
 Qt 5.9.0
 
 # demo
-![demo](images/demo.png)
+![demo](images/demo.png) <br/>
+![demo](images/demo.gif)
