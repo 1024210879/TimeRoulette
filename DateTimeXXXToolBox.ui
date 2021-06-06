@@ -144,11 +144,11 @@ QGroupBox:title {
           <number>16</number>
          </property>
          <item>
-          <widget class="QGroupBox" name="groupBox_4">
+          <widget class="QGroupBox" name="groupBox_2">
            <property name="title">
-            <string>Label</string>
+            <string>Normal</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
             <property name="spacing">
              <number>16</number>
             </property>
@@ -159,9 +159,9 @@ QGroupBox:title {
              <number>16</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="label_3">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -186,32 +186,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_18">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_7">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>150</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>118</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_labelR">
+               <widget class="QSlider" name="horizontalSlider_normalR">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -222,7 +207,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>150</number>
+                 <number>118</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -232,9 +217,9 @@ QGroupBox:title {
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QLabel" name="label_8">
+               <widget class="QLabel" name="label_2">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -259,32 +244,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_17">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_8">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>10</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>149</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_labelG">
+               <widget class="QSlider" name="horizontalSlider_normalG">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -295,7 +265,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>10</number>
+                 <number>149</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -305,9 +275,9 @@ QGroupBox:title {
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QLabel" name="label_9">
+               <widget class="QLabel" name="label">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -332,32 +302,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_16">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_9">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>10</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>150</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_labelB">
+               <widget class="QSlider" name="horizontalSlider_normalB">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -368,7 +323,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>10</number>
+                 <number>150</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -423,27 +378,12 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_13">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_4">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>220</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>220</number>
                 </property>
                </widget>
               </item>
@@ -496,27 +436,12 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_14">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_5">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>234</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>234</number>
                 </property>
                </widget>
               </item>
@@ -569,27 +494,12 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_15">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_6">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>246</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>246</number>
                 </property>
                </widget>
               </item>
@@ -618,11 +528,11 @@ QGroupBox:title {
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_2">
+          <widget class="QGroupBox" name="groupBox_4">
            <property name="title">
-            <string>Normal</string>
+            <string>Label</string>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
             <property name="spacing">
              <number>16</number>
             </property>
@@ -633,9 +543,9 @@ QGroupBox:title {
              <number>16</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QLabel" name="label_3">
+               <widget class="QLabel" name="label_7">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -660,32 +570,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_10">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>118</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>150</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_normalR">
+               <widget class="QSlider" name="horizontalSlider_labelR">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -696,7 +591,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>118</number>
+                 <number>150</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -706,9 +601,9 @@ QGroupBox:title {
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
               <item>
-               <widget class="QLabel" name="label_2">
+               <widget class="QLabel" name="label_8">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -733,32 +628,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_11">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_2">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>149</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_normalG">
+               <widget class="QSlider" name="horizontalSlider_labelG">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -769,7 +649,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>149</number>
+                 <number>10</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -779,9 +659,9 @@ QGroupBox:title {
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout">
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
               <item>
-               <widget class="QLabel" name="label">
+               <widget class="QLabel" name="label_9">
                 <property name="minimumSize">
                  <size>
                   <width>15</width>
@@ -806,32 +686,17 @@ QGroupBox:title {
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_12">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
+               <widget class="QSpinBox" name="spinBox_3">
+                <property name="maximum">
+                 <number>255</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>30</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>150</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="margin">
-                 <number>0</number>
+                <property name="value">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_normalB">
+               <widget class="QSlider" name="horizontalSlider_labelB">
                 <property name="minimumSize">
                  <size>
                   <width>255</width>
@@ -842,7 +707,7 @@ QGroupBox:title {
                  <number>255</number>
                 </property>
                 <property name="value">
-                 <number>150</number>
+                 <number>10</number>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -884,146 +749,290 @@ QGroupBox:title {
  <resources/>
  <connections>
   <connection>
-   <sender>horizontalSlider_normalR</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_10</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>144</x>
-     <y>102</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>79</x>
-     <y>96</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_highlightR</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_13</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>306</x>
-     <y>95</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>279</x>
-     <y>98</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_labelB</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_16</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>507</x>
-     <y>180</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>466</x>
-     <y>187</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_normalG</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_11</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>133</x>
-     <y>141</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>81</x>
-     <y>135</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_highlightG</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_14</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>326</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>280</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_highlightB</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_15</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>315</x>
-     <y>179</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>277</x>
-     <y>183</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>horizontalSlider_labelR</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>label_18</receiver>
-   <slot>setNum(int)</slot>
+   <receiver>spinBox</receiver>
+   <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>503</x>
-     <y>92</y>
+     <x>151</x>
+     <y>89</y>
     </hint>
     <hint type="destinationlabel">
-     <x>478</x>
-     <y>97</y>
+     <x>120</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSlider_normalB</sender>
+   <sender>spinBox</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>label_12</receiver>
-   <slot>setNum(int)</slot>
+   <receiver>horizontalSlider_labelR</receiver>
+   <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>124</x>
-     <y>176</y>
+     <x>117</x>
+     <y>103</y>
     </hint>
     <hint type="destinationlabel">
-     <x>81</x>
-     <y>179</y>
+     <x>302</x>
+     <y>96</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>horizontalSlider_labelG</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>label_17</receiver>
-   <slot>setNum(int)</slot>
+   <receiver>spinBox_2</receiver>
+   <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>510</x>
+     <x>191</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>133</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_labelG</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
      <y>141</y>
     </hint>
     <hint type="destinationlabel">
-     <x>478</x>
-     <y>141</y>
+     <x>265</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_labelB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_3</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>188</x>
+     <y>169</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>120</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_3</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_labelB</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>280</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_highlightR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_4</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>246</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_4</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_highlightR</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>256</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>306</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_highlightG</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_5</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>251</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>114</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_5</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_highlightG</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>103</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>268</x>
+     <y>290</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_highlightB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_6</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>209</x>
+     <y>324</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>116</x>
+     <y>328</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_6</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_highlightB</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>336</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>335</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_normalR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_7</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>173</x>
+     <y>398</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>114</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_7</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_normalR</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>116</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>411</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_normalG</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_8</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>186</x>
+     <y>435</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>118</x>
+     <y>440</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_8</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_normalG</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>448</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_normalB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_9</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>179</x>
+     <y>478</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>99</x>
+     <y>479</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_9</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_normalB</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>490</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>258</x>
+     <y>487</y>
     </hint>
    </hints>
   </connection>
