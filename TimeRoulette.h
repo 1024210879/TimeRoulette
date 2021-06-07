@@ -1,5 +1,5 @@
-#ifndef DATETIMEXXX_H
-#define DATETIMEXXX_H
+#ifndef TIMEROULETTE_H
+#define TIMEROULETTE_H
 
 #include <QWidget>
 #include <QPainter>
@@ -13,28 +13,28 @@
 #include <QScreen>
 #include <thread>
 
-#include "DateTimeXXXToolBox.h"
+#include "TimeRouletteToolBox.h"
 #include "MsgManager.h"
 #include "datIO.h"
 
 namespace Ui {
-class DateTimeXXX;
+class TimeRoulette;
 }
 
-class DateTimeXXX : public QWidget
+class TimeRoulette : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DateTimeXXX(QWidget *parent = 0);
-    ~DateTimeXXX();
+    explicit TimeRoulette(QWidget *parent = 0);
+    ~TimeRoulette();
 
 protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    Ui::DateTimeXXX *ui;
-    DateTimeXXXToolBox* m_pToolBox;
+    Ui::TimeRoulette *ui;
+    TimeRouletteToolBox* m_pToolBox;
 
 private:
     QString m_map0to10[11] = {
@@ -61,11 +61,12 @@ private:
     DateTimeInfo m_dateTimeInfo;
 
     QTimer m_timer;
-    int m_spacing;
 
-    QPen m_penNormal;
-    QPen m_penHighlight;
-    QPen m_penLabel;
+    // 控制板设置项
+    double  m_scale;
+    QPen    m_penNormal;
+    QPen    m_penHighlight;
+    QPen    m_penLabel;
 
 private:
     void init();
@@ -93,4 +94,4 @@ private slots:
     void slotExit();
 };
 
-#endif // DATETIMEXXX_H
+#endif // TIMEROULETTE_H

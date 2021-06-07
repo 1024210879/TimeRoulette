@@ -1,22 +1,22 @@
-#include "DateTimeXXX.h"
-#include "ui_DateTimeXXX.h"
+#include "TimeRoulette.h"
+#include "ui_TimeRoulette.h"
 
-DateTimeXXX::DateTimeXXX(QWidget *parent) :
+TimeRoulette::TimeRoulette(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::DateTimeXXX)
+    ui(new Ui::TimeRoulette)
 {
     ui->setupUi(this);
     init();
     registerMsg();
 }
 
-DateTimeXXX::~DateTimeXXX()
+TimeRoulette::~TimeRoulette()
 {
     m_pToolBox->deleteLater();
     delete ui;
 }
 
-void DateTimeXXX::paintEvent(QPaintEvent *event)
+void TimeRoulette::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
@@ -27,7 +27,7 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     const int h = this->height();
 
     painter.translate(w >> 1, h >> 1);
-    painter.scale(std::min(w, h)/600.0, std::min(w, h)/600.0);
+    painter.scale(std::min(w, h)/m_scale, std::min(w, h)/m_scale);
 
     paintMonth(&painter);
     paintDay(&painter);
@@ -45,8 +45,17 @@ void DateTimeXXX::paintEvent(QPaintEvent *event)
     paintCenterCircle(&painter);
 }
 
-void DateTimeXXX::init()
+void TimeRoulette::init()
 {
+    m_scale = 630;
+
+    const int spacing = 50;
+    m_dateTimeInfo.xMonth      = 70;
+    m_dateTimeInfo.xDay        = 70+1*spacing;
+    m_dateTimeInfo.xHour       = 70+2*spacing;
+    m_dateTimeInfo.xMinue      = 70+3*spacing;
+    m_dateTimeInfo.xSecond     = 70+4*spacing;
+
     QList<QScreen *> list_screen =  QGuiApplication::screens();
     QRect rect = list_screen.at(0)->geometry();
     const int sw = rect.width();
@@ -76,10 +85,10 @@ void DateTimeXXX::init()
     });
     m_timer.start();
 
-    m_pToolBox = new DateTimeXXXToolBox;
+    m_pToolBox = new TimeRouletteToolBox;
 }
 
-void DateTimeXXX::registerMsg()
+void TimeRoulette::registerMsg()
 {
     MsgManager::instance()->registerSlot(
                 QString("changeNormalColor"),
@@ -92,7 +101,7 @@ void DateTimeXXX::registerMsg()
                 SLOT(slotExit()));
 }
 
-QString DateTimeXXX::itoStr(int i)
+QString TimeRoulette::itoStr(int i)
 {
     QString str = "";
     if (i < 10)
@@ -107,7 +116,7 @@ QString DateTimeXXX::itoStr(int i)
     return str;
 }
 
-void DateTimeXXX::getDateTimeInfo()
+void TimeRoulette::getDateTimeInfo()
 {
     QDate curDate = QDate::currentDate();
     QTime curTime = QTime::currentTime();
@@ -118,16 +127,9 @@ void DateTimeXXX::getDateTimeInfo()
     m_dateTimeInfo.hour        = curTime.hour();
     m_dateTimeInfo.minute      = curTime.minute();
     m_dateTimeInfo.second      = curTime.second();
-
-    m_spacing = 50;
-    m_dateTimeInfo.xMonth      = 70;
-    m_dateTimeInfo.xDay        = 70+1*m_spacing;
-    m_dateTimeInfo.xHour       = 70+2*m_spacing;
-    m_dateTimeInfo.xMinue      = 70+3*m_spacing;
-    m_dateTimeInfo.xSecond     = 70+4*m_spacing;
 }
 
-void DateTimeXXX::paintMonth(QPainter* painter)
+void TimeRoulette::paintMonth(QPainter* painter)
 {
     const double angle = 360.0/12.0;
     for (int i = 1; i <= 12; ++i)
@@ -146,7 +148,7 @@ void DateTimeXXX::paintMonth(QPainter* painter)
     }
 }
 
-void DateTimeXXX::paintDay(QPainter* painter)
+void TimeRoulette::paintDay(QPainter* painter)
 {
     const double angle = 360.0/m_dateTimeInfo.daysInMonth;
     for (int i = 1; i <= m_dateTimeInfo.daysInMonth; ++i)
@@ -165,7 +167,7 @@ void DateTimeXXX::paintDay(QPainter* painter)
     }
 }
 
-void DateTimeXXX::paintHour(QPainter* painter)
+void TimeRoulette::paintHour(QPainter* painter)
 {
     const double angle = 360.0/24.0;
     for (int i = 0; i < 24; ++i)
@@ -184,7 +186,7 @@ void DateTimeXXX::paintHour(QPainter* painter)
     }
 }
 
-void DateTimeXXX::paintMinute(QPainter* painter)
+void TimeRoulette::paintMinute(QPainter* painter)
 {
     const double angle = 360.0/60.0;
     for (int i = 0; i < 60; ++i)
@@ -203,7 +205,7 @@ void DateTimeXXX::paintMinute(QPainter* painter)
     }
 }
 
-void DateTimeXXX::paintSecond(QPainter* painter)
+void TimeRoulette::paintSecond(QPainter* painter)
 {
     for (int i = 0; i < 60; ++i)
     {
@@ -220,7 +222,7 @@ void DateTimeXXX::paintSecond(QPainter* painter)
     }
 }
 
-void DateTimeXXX::paintCurDateTimeBackground(QPainter *painter)
+void TimeRoulette::paintCurDateTimeBackground(QPainter *painter)
 {
     painter->save();
 
@@ -238,7 +240,7 @@ void DateTimeXXX::paintCurDateTimeBackground(QPainter *painter)
     painter->restore();
 }
 
-void DateTimeXXX::paintCurDateTime(QPainter *painter)
+void TimeRoulette::paintCurDateTime(QPainter *painter)
 {
     // month
     painter->setPen(m_penHighlight);
@@ -261,7 +263,7 @@ void DateTimeXXX::paintCurDateTime(QPainter *painter)
     painter->drawText(m_dateTimeInfo.xSecond, 0, itoStr(m_dateTimeInfo.second));
 }
 
-void DateTimeXXX::paintLabel(QPainter *painter)
+void TimeRoulette::paintLabel(QPainter *painter)
 {
     painter->setPen(m_penLabel);
     painter->drawText(m_dateTimeInfo.xMonth  + 25, 0, QString("月"));
@@ -271,7 +273,7 @@ void DateTimeXXX::paintLabel(QPainter *painter)
     painter->drawText(m_dateTimeInfo.xSecond + 25, 0, QString("秒"));
 }
 
-void DateTimeXXX::paintPointerHour(QPainter *painter)
+void TimeRoulette::paintPointerHour(QPainter *painter)
 {
     QPainterPath path;
     path.moveTo(-15, 0);
@@ -288,7 +290,7 @@ void DateTimeXXX::paintPointerHour(QPainter *painter)
     painter->restore();
 }
 
-void DateTimeXXX::paintPointerMinute(QPainter *painter)
+void TimeRoulette::paintPointerMinute(QPainter *painter)
 {
     QPainterPath path;
     path.moveTo(-10, 0);
@@ -305,7 +307,7 @@ void DateTimeXXX::paintPointerMinute(QPainter *painter)
     painter->restore();
 }
 
-void DateTimeXXX::paintPointerSecond(QPainter *painter)
+void TimeRoulette::paintPointerSecond(QPainter *painter)
 {
     QPainterPath path;
     path.moveTo(-7, 0);
@@ -322,7 +324,7 @@ void DateTimeXXX::paintPointerSecond(QPainter *painter)
     painter->restore();
 }
 
-void DateTimeXXX::paintCenterCircle(QPainter *painter)
+void TimeRoulette::paintCenterCircle(QPainter *painter)
 {
     QPainterPath path;
     path.addEllipse(QPointF(0, 0), 3, 3);
@@ -334,7 +336,7 @@ void DateTimeXXX::paintCenterCircle(QPainter *painter)
     painter->restore();
 }
 
-void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
+void TimeRoulette::slotChangeColor(QString topic, QString channel, int value)
 {
     QColor color;
     if (topic == "normal")
@@ -377,7 +379,7 @@ void DateTimeXXX::slotChangeColor(QString topic, QString channel, int value)
     this->repaint();
 }
 
-void DateTimeXXX::slotExit()
+void TimeRoulette::slotExit()
 {
     this->close();
 }

@@ -1,9 +1,9 @@
-#include "DateTimeXXXToolBox.h"
-#include "ui_DateTimeXXXToolBox.h"
+#include "TimeRouletteToolBox.h"
+#include "ui_TimeRouletteToolBox.h"
 
-DateTimeXXXToolBox::DateTimeXXXToolBox(QWidget *parent) :
+TimeRouletteToolBox::TimeRouletteToolBox(QWidget *parent) :
     MovableWidget(parent),
-    ui(new Ui::DateTimeXXXToolBox)
+    ui(new Ui::TimeRouletteToolBox)
 {
     ui->setupUi(this);
 
@@ -11,12 +11,12 @@ DateTimeXXXToolBox::DateTimeXXXToolBox(QWidget *parent) :
     registerMsg();
 }
 
-DateTimeXXXToolBox::~DateTimeXXXToolBox()
+TimeRouletteToolBox::~TimeRouletteToolBox()
 {
     delete ui;
 }
 
-void DateTimeXXXToolBox::init()
+void TimeRouletteToolBox::init()
 {
     std::vector<uchar> v = datIO::readDat();
     if (v.empty())
@@ -39,7 +39,7 @@ void DateTimeXXXToolBox::init()
     connect(trayIcon, &TrayIcon::sigExit, [this]{ this->on_pushButton_close_clicked(); });
 }
 
-void DateTimeXXXToolBox::registerMsg()
+void TimeRouletteToolBox::registerMsg()
 {
     MsgManager::instance()->registerSignal(
                 QString("changeNormalColor"),
@@ -52,57 +52,57 @@ void DateTimeXXXToolBox::registerMsg()
                 SIGNAL(sigExit()));
 }
 
-void DateTimeXXXToolBox::on_pushButton_hide_clicked()
+void TimeRouletteToolBox::on_pushButton_hide_clicked()
 {
     this->setVisible(false);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_normalR_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_normalR_valueChanged(int value)
 {
     emit sigChangeColor(QString("normal"), QString("R"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_normalG_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_normalG_valueChanged(int value)
 {
     emit sigChangeColor(QString("normal"), QString("G"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_normalB_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_normalB_valueChanged(int value)
 {
     emit sigChangeColor(QString("normal"), QString("B"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_highlightR_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_highlightR_valueChanged(int value)
 {
     emit sigChangeColor(QString("highlight"), QString("R"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_highlightG_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_highlightG_valueChanged(int value)
 {
     emit sigChangeColor(QString("highlight"), QString("G"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_highlightB_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_highlightB_valueChanged(int value)
 {
     emit sigChangeColor(QString("highlight"), QString("B"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_labelR_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_labelR_valueChanged(int value)
 {
     emit sigChangeColor(QString("label"), QString("R"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_labelG_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_labelG_valueChanged(int value)
 {
     emit sigChangeColor(QString("label"), QString("G"), value);
 }
 
-void DateTimeXXXToolBox::on_horizontalSlider_labelB_valueChanged(int value)
+void TimeRouletteToolBox::on_horizontalSlider_labelB_valueChanged(int value)
 {
     emit sigChangeColor(QString("label"), QString("B"), value);
 }
 
-void DateTimeXXXToolBox::on_pushButton_save_clicked()
+void TimeRouletteToolBox::on_pushButton_save_clicked()
 {
     std::vector<uchar> v;
     v.resize(9);
@@ -118,7 +118,7 @@ void DateTimeXXXToolBox::on_pushButton_save_clicked()
     datIO::writeDat(v);
 }
 
-void DateTimeXXXToolBox::on_pushButton_close_clicked()
+void TimeRouletteToolBox::on_pushButton_close_clicked()
 {
     emit sigExit();
     this->deleteLater();

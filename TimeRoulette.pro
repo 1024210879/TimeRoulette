@@ -26,23 +26,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     MovableWidget.cpp \
-    DateTimeXXX.cpp \
-    DateTimeXXXToolBox.cpp \
     MsgManager.cpp \
     datIO.cpp \
-    TrayIcon.cpp
+    TrayIcon.cpp \
+    TimeRoulette.cpp \
+    TimeRouletteToolBox.cpp
 
 HEADERS += \
     MovableWidget.h \
-    DateTimeXXX.h \
-    DateTimeXXXToolBox.h \
     MsgManager.h \
     datIO.h \
-    TrayIcon.h
+    TrayIcon.h \
+    TimeRoulette.h \
+    TimeRouletteToolBox.h
 
 FORMS += \
-    DateTimeXXX.ui \
-    DateTimeXXXToolBox.ui
+    TimeRoulette.ui \
+    TimeRouletteToolBox.ui
 
 RESOURCES += \
     main.qrc

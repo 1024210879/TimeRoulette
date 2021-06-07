@@ -1,5 +1,5 @@
-#ifndef DATETIMEXXXTOOLBOX_H
-#define DATETIMEXXXTOOLBOX_H
+#ifndef TIMEROULETTETOOLBOX
+#define TIMEROULETTETOOLBOX
 
 #include <QWidget>
 #include <QKeyEvent>
@@ -10,16 +10,16 @@
 #include "datIO.h"
 
 namespace Ui {
-class DateTimeXXXToolBox;
+class TimeRouletteToolBox;
 }
 
-class DateTimeXXXToolBox : public MovableWidget
+class TimeRouletteToolBox : public MovableWidget
 {
     Q_OBJECT
 
 public:
-    explicit DateTimeXXXToolBox(QWidget *parent = 0);
-    ~DateTimeXXXToolBox();
+    explicit TimeRouletteToolBox(QWidget *parent = 0);
+    ~TimeRouletteToolBox();
 
 private slots:
     void on_pushButton_hide_clicked();
@@ -47,7 +47,7 @@ private slots:
     void on_pushButton_close_clicked();
 
 private:
-    Ui::DateTimeXXXToolBox *ui;
+    Ui::TimeRouletteToolBox *ui;
     TrayIcon* trayIcon;
 
 private:
@@ -59,4 +59,4 @@ signals:
     void sigExit();
 };
 
-#endif // DATETIMEXXXTOOLBOX_H
+#endif // TIMEROULETTETOOLBOX_H
